@@ -7,6 +7,6 @@ spec:
     app: ocr
   ports:
     - protocol: TCP
-      port: 8100
-      targetPort: 8000
+      port: 8080
+      targetPort: 8080
   type: LoadBalancer
