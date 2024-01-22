@@ -1,1 +1,1 @@
-# OCR
+# OCR_PROJ
