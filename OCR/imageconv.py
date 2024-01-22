@@ -34,7 +34,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
+        
         if username in users and users[username]['password'] == password:
             user = User()
             user.id = username
