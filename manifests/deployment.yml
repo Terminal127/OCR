@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ocr:54
+  name: ocr-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: ocr:54
+      app: ocr
   template:
     metadata:
       labels:
-        app: ocr:54
+        app: ocr
     spec:
       containers:
-        - name: ocr:54
+        - name: ocr-container
           image: the127terminal/ocr:54
           ports:
             - containerPort: 80
           resources:
             limits:
-              cpu: "0.5"  # Set CPU limit to 0.5 cores
-              memory: "512Mi"  # Set memory limit to 512 megabytes
+              cpu: "0.5"
+              memory: "512Mi"
             requests:
-              cpu: "0.2"  # Set CPU request to 0.2 cores
-              memory: "256Mi"  # Set memory request to 256 megabytes
+              cpu: "0.2"
+              memory: "256Mi"
