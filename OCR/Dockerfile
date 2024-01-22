@@ -8,7 +8,7 @@ RUN pip install flask pytesseract Pillow
 
 COPY . .
 
-RUN pip install -r ./requirements.txt
+RUN pip install --ignore-installed -r ./requirements.txt
 
 EXPOSE 80
 
