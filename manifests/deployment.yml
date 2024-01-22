@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ocr-deployment
+  name: ocr:53
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: ocr
+      app: ocr:53
   template:
     metadata:
       labels:
-        app: ocr
+        app: ocr:53
     spec:
       containers:
-        - name: ocr-image
-          image: the127terminal/ocr
+        - name: ocr:53
+          image: the127terminal/ocr:53
           ports:
             - containerPort: 80
           resources:
