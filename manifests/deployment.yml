@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ocr-container
-          image: the127terminal/ocr:69
+          image: the127terminal/ocr:70
           ports:
             - containerPort: 80
           resources:
