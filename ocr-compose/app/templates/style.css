@@ -1,0 +1,46 @@
+body {
+    font-family: sans-serif;
+    margin: 40px;
+    background-image: url('ocr3.jpeg');
+    background-size: cover;
+
+}
+
+.container {
+
+    padding: 210px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="file"] {
+    background-color: #eee;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+button[type="submit"]:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    background-color: #45a049;
+}
