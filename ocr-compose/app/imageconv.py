@@ -1,26 +1,28 @@
-# app.py
+# this has the featue of image download and all 
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_pymongo import PyMongo
+import requests
+import os
+import tempfile
+from werkzeug.utils import secure_filename
 
 import pytesseract
 from PIL import Image
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'anubhav'  # Change this to a secret key for security
-app.config['MONGO_URI'] = 'mongodb://mongo:27017/test'  # Update with your MongoDB URI
+app.config['MONGO_URI'] = 'mongodb://mongo:27017/testdb'  # Update with your MongoDB URI
 
 mongo = PyMongo(app)
 db = mongo.db
-
-
 if 'savestext' not in db.list_collection_names():
     try:
         db.create_collection('savestext')
     except CollectionInvalid:
         # Handle the case where another thread/process created the collection simultaneously
-        pass
+        pass # Corrected collection creation
 
 # Flask-Login setup
 login_manager = LoginManager(app)
@@ -64,23 +66,48 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+def process_image_from_url(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        # Use a temporary file to save the downloaded image
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as file:
+            file.write(response.content)
+            return file.name
+    else:
+        return None
+
 @app.route('/process_image', methods=['POST'])
 @login_required
 def process_image():
-    if 'file' not in request.files:
-        return "No file part"
+    if 'file' not in request.files and 'image_url' not in request.form:
+        return "No file or image URL provided"
 
-    file = request.files['file']
+    if 'file' in request.files:
+        file = request.files['file']
 
-    if file.filename == '':
-        return "No selected file"
-    else:
-        filename = file.filename
+        if file.filename == '':
+            return "No selected file"
 
-    image = Image.open(file)
-    text = pytesseract.image_to_string(image)
-    # Store the result text in MongoDB
-    db.savestext.insert_one({'filename': filename, 'text': text})
+        filename = secure_filename(file.filename)  # Use secure_filename to sanitize the filename
+
+        image = Image.open(file)
+        text = pytesseract.image_to_string(image)
+        db.savestext.insert_one({'filename': filename, 'text': text})
+
+    elif 'image_url' in request.form:
+        image_url = request.form['image_url']
+
+        if not image_url:
+            return "No image URL provided"
+
+        imagename = process_image_from_url(image_url)
+
+        if not imagename:
+            return "Failed to download the image from the provided URL"
+
+        image = Image.open(imagename)
+        text = pytesseract.image_to_string(image)
+        db.savestext.insert_one({'filename': imagename, 'text': text})
 
     return render_template('results.html', text=text)
 
@@ -93,4 +120,3 @@ def display_results():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
-
