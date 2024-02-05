@@ -1,1 +1,1 @@
-# OCR_PROJ_release
+# OCR_PROJ
