@@ -1,3 +1,5 @@
+![Logo](https://github.com/Terminal127/OCR/blob/main/OCR/static/ocrbanner.png)
+
 ## End-to-End DevOps Project with Python OCR Module
 
 In this comprehensive DevOps project, we integrate cutting-edge OCR (Optical Character Recognition) capabilities, implemented in Python, as the foreground application. This is supported by state-of-the-art DevOps mechanisms, aligning with current industry standards.
