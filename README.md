@@ -35,6 +35,10 @@ Our project seamlessly blends the power of OCR technology with robust DevOps pra
 
 We are thankful to [MrCelestial](https://github.com/MrCelestial/MrCelestial) for providing expertise in making the frontend elegant and easy to use.
 
+### Schema
+
+![Logo](https://github.com/MrCelestial/OCR/blob/main/OCR/templates/project-schema.png)
+
 ### Benefits
 
 - Enhanced text recognition accuracy and efficiency.
