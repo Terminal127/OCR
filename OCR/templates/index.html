@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OCR Web Interface</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body background="{{ url_for('static', filename='ocr3.jpeg') }}">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body background="ocr3.jpeg">
     <div class="container">
-        <h1>OCR Web Interface</h1>
-        <form action="/process_image" method="post" enctype="multipart/form-data">
-            <label for="file">Select an image:</label>
-            <input type="file" id="file" name="file" accept="image/*">
-            <button type="submit">Submit</button>
-        </form>
+      <h1>OCR Web Interface</h1>
+
+      <!-- Image Upload Form -->
+      <form action="/process_image" method="post" enctype="multipart/form-data">
+        <label for="file">Select an image:</label>
+        <input type="file" id="file" name="file" accept="image/*" />
+        <button type="submit">Submit</button>
+      </form>
+
+      <!-- Image URL Form -->
+      <form action="/process_image" method="post">
+        <label for="image_url">Provide an image URL:</label>
+        <input
+          type="url"
+          id="image_url"
+          name="image_url"
+          placeholder="Enter image URL"
+        />
+          
+      </form>
     </div>
-</body>
+    <a href="/display_results">Back to Home</a>
+  </body>
 </html>
