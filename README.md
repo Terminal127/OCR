@@ -50,3 +50,5 @@ We are thankful to [MrCelestial](https://github.com/MrCelestial/MrCelestial) for
 ### Conclusion
 
 By combining the power of OCR technology with DevOps principles and utilizing a suite of modern tools and services including Kubernetes, Jenkins, Terraform, and Docker Compose, our end-to-end project offers a robust solution for text recognition tasks. With a focus on scalability, reliability, and automation, this project sets a high standard for modern software development and deployment practices.
+
+test
